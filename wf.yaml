@@ -1,0 +1,24 @@
+name: wf
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: 'Target environment'
+        required: true
+  # pull_request:
+  #   branches: [main]
+  #   types:
+  #     - closed
+  #   paths:
+  #     - 'iac/*.tf'
+
+jobs:
+  wf:
+    # if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    # environment: ${{ matrix.environment }}
+  steps:
+    - name: "print"
+      run: echo '${{ vars.ENVIRONMENT }}'
