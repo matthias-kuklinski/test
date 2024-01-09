@@ -7,18 +7,16 @@ on:
         type: environment
         description: 'Target environment'
         required: true
-  # pull_request:
-  #   branches: [main]
-  #   types:
-  #     - closed
-  #   paths:
-  #     - 'iac/*.tf'
+  pull_request:
+    branches: [main]
+    types:
+      - closed
 
 jobs:
   wf:
     if: github.event.pull_request.merged || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.environment || 'dev' }}
     steps:
       - name: print
         run: echo '${{ vars.ENVIRONMENT }}'
