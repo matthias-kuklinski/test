@@ -19,6 +19,6 @@ jobs:
     # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     # environment: ${{ matrix.environment }}
-  steps:
-    - name: "print"
-      run: echo '${{ vars.ENVIRONMENT }}'
+    steps:
+      - name: print
+        run: echo '${{ vars.ENVIRONMENT }}'
